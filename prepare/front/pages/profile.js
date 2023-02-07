@@ -3,7 +3,7 @@ import AppLayout from '../components/AppLayout';
 const profile = () => {
   return (
     <AppLayout>
-    <div>내 프로필</div>
+      <div>내 프로필</div>
     </AppLayout>
   );
 };
