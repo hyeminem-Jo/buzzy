@@ -3,19 +3,19 @@ import Link from 'next/link'
 import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import GlobalStyles from "./GlobalStyles";
-
-const navLinks = [
-  {title: 'Home', path: '/'},
-  {title: 'Profile', path: '/profile'},
-  {title: 'Signup', path: '/signup'},
-]
+import { Row, Col } from 'antd';
+import {useState} from "react";
+import UserProfile from "./UserProfile";
+import LoginForm from "./LoginForm";
 
 const GlobalMenu = createGlobalStyle`
   .nav-wrap {
     height: 50px;
+    margin-bottom: 30px;
     
     .nav {
       display: flex;
+      height: 100%;
       
       li {
         &:not(:nth-child(4)) {
@@ -48,32 +48,42 @@ const GlobalMenu = createGlobalStyle`
       padding: 0 20px;
       
       input {
-        margin-top: 5px;
-        height: 30px;
-      }
-      
-      button {
-        display: inline-block;
-        border: 1px solid gray;
         height: 33px;
-        width: 50px;
+        margin-top: 11px;
+        padding: 0;
+        padding-left: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        
+        &:focus {
+          border: 2px solid darkgoldenrod;
+        }
       }
     }
   }
 `
 
 const AppLayout = ({ children }) => {
+  const navLinks = [
+    {title: 'Home', path: '/'},
+    {title: 'Profile', path: '/profile'},
+    {title: 'Signup', path: '/signup'},
+  ]
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
+
   return (
-    <div>
+    <>
       <GlobalStyles />
       <GlobalMenu />
-        <div className="nav-wrap">
+      <div className="nav-wrap">
           <ul className="nav">
             {
               navLinks.map((link) => (
                 <li key={link.title}>
-                  <Link href={link.path} className={router.pathname === link.path ? "activeLink" : ""}>{link.title}</Link>
+                  <Link href={link.path}
+                    className={router.pathname === link.path ? "activeLink" : ""}>{link.title}
+                  </Link>
                 </li>
               ))
             }
@@ -83,8 +93,20 @@ const AppLayout = ({ children }) => {
             </li>
           </ul>
         </div>
-      { children}
-    </div>
+      <Row gutter={30}>
+        <Col xs={24} sm={6} style={{ border: '1px solid #ccc'}}>
+          {/*왼쪽 메뉴*/}
+          {isLoggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn} /> : <LoginForm setIsLoggedIn={setIsLoggedIn}/>}
+        </Col>
+        <Col xs={24} sm={12} style={{ backgroundColor: '#eee'}}>
+          {children}
+        </Col>
+        <Col xs={24} sm={6}>
+          <a href="https://www.naver.com/" target="_blank" rel="noreferrer noopener">네이버</a>
+          {/* 다른 페이지에서 접근하는 target _blank 는 보안상의 위험이 있기 때문에 rel="noreferrer" 를 적어주어야 한다. */}
+        </Col>
+      </Row>
+    </>
   );
 };
 

@@ -9,17 +9,23 @@ const GlobalStyles = createGlobalStyle`
   }
   
   button {
-    border: none; 
+    display: inline-block;
+    border: 1px solid gray;
+    height: 33px;
+    padding: 0 10px;
     box-shadow:none; 
     border-radius:0; 
-    padding:0; 
     overflow:visible; 
     cursor:pointer
   }
   
   input {
-    border: none;
-    border: 1px solid gray;
+    outline: none;
+    border: 2px solid #ccc;
+    padding: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   body {
