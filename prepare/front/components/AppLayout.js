@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import { Row, Col } from 'antd';
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
 
@@ -72,6 +72,9 @@ const AppLayout = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
+  const leftStyle = useMemo(() => ({ border: '1px solid #ccc'}), [])
+  const middleStyle = useMemo(() => ({ backgroundColor: '#eee', paddingTop: '20px', paddingBottom: '20px'}), [])
+
   return (
     <>
       <GlobalStyles />
@@ -94,11 +97,11 @@ const AppLayout = ({ children }) => {
           </ul>
         </div>
       <Row gutter={30}>
-        <Col xs={24} sm={6} style={{ border: '1px solid #ccc'}}>
+        <Col xs={24} sm={6} style={leftStyle}>
           {/*왼쪽 메뉴*/}
           {isLoggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn} /> : <LoginForm setIsLoggedIn={setIsLoggedIn}/>}
         </Col>
-        <Col xs={24} sm={12} style={{ backgroundColor: '#eee'}}>
+        <Col xs={24} sm={12} style={middleStyle}>
           {children}
         </Col>
         <Col xs={24} sm={6}>

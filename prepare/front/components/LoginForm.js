@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form'
 import PropTypes from 'prop-types'
-import UserProfile from "./UserProfile";
 import {createGlobalStyle} from "styled-components";
 
 const Form = createGlobalStyle`
@@ -11,7 +10,8 @@ const Form = createGlobalStyle`
   .field {
     margin-bottom: 10px;
     
-    input {
+    input[type="text"],
+    input[type="password"] {
       width: 90%;
       margin-bottom: 3px;
     }
@@ -29,7 +29,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
   const onSubmit = (data) => { // 제출버튼을 눌렀을 때 실행
     console.log(data) // {id: 'id', password: 'password'} 의 형태로 찍힘
     reset(); // 제출된 값이 유효한 경우 모든 input 내의 값을 초기화시킴
-    setIsLoggedIn(true)
+    // setIsLoggedIn(true)
   }
   // console.log(watch()) // input 창 입력시마다 다음과 같이 찍힘
   // {id: '', password: ''}
@@ -58,7 +58,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
         <div className="field">
           <input
             {...register('password', { required: true })}
-            type="text"
+            type="password"
             maxLength="15"
             placeholder='비밀번호'/>
           <p>

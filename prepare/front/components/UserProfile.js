@@ -35,13 +35,13 @@ const Profile = createGlobalStyle`
     .profile-amount {
       display: flex;
       height: 70px;
-      border: 1px solid #bbb;
+      border: 1.5px solid #ccc;
       
       &>* {
         flex: 1;
         text-align: center;
         padding-top: 20px;
-        border-right: 1px solid #bbb;
+        border-right: 1.5px solid #ccc;
         
         &:last-child {
           border: none;

@@ -10,16 +10,20 @@ const GlobalStyles = createGlobalStyle`
   
   button {
     display: inline-block;
-    border: 1px solid gray;
-    height: 33px;
+    border: 1px solid #E6B905;
+    height: 34px;
     padding: 0 10px;
     box-shadow:none; 
     border-radius:0; 
     overflow:visible; 
-    cursor:pointer
+    cursor:pointer;
+    background-color: #E6B905;
+    color: #fff;
   }
   
-  input {
+  input[type="email"],
+  input[type="text"],
+  input[type="password"] {
     outline: none;
     border: 2px solid #ccc;
     padding: 10px;

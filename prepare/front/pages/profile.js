@@ -4,6 +4,16 @@ import NicknameEditForm from "../components/NicknameEditForm";
 import FollowList from "../components/FollowList";
 
 const profile = () => {
+  const followerList = [
+    {nickname: "이희승"},
+    {nickname: "조수빈"},
+    {nickname: "이현지"},
+  ]
+  const followingList = [
+    {nickname: "이희승"},
+    {nickname: "조수빈"},
+    {nickname: "이현지"},
+  ]
   return (
     <>
       <Head>
@@ -12,8 +22,8 @@ const profile = () => {
       <AppLayout>
         <div>내 프로필</div>
         <NicknameEditForm />
-        <FollowList header="팔로잉 목록" />
-        <FollowList header="팔로워 목록" />
+        <FollowList header="팔로잉 목록" data={followerList} />
+        <FollowList header="팔로워 목록" data={followingList} />
       </AppLayout>
     </>
   );
