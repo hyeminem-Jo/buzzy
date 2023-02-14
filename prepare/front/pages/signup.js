@@ -1,7 +1,7 @@
 import AppLayout from '../components/AppLayout';
 import Head from "next/head";
 import { useForm } from "react-hook-form";
-import {useMemo} from "react";
+import { useMemo } from "react";
 
 // let renderCount = 0
 const signup = () => {
