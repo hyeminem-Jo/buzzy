@@ -1,5 +1,4 @@
 // 3. 스토어 생성
-
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import logger from "redux-logger";

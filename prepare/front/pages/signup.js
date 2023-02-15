@@ -1,7 +1,25 @@
 import AppLayout from '../components/AppLayout';
 import Head from "next/head";
 import { useForm } from "react-hook-form";
-import { useMemo } from "react";
+import {useCallback, useMemo} from "react";
+import styled from "styled-components";
+import * as userActions from "../store/modules/user";
+
+const Form = styled.form`
+  .field:not(:nth-child(2)) {
+    margin-bottom: 30px;
+  }
+  label:not([for="term"]) {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  input:not([type="checkbox"]) {
+    width: 90%;
+  }
+`
 
 // let renderCount = 0
 const signup = () => {
@@ -13,15 +31,14 @@ const signup = () => {
     }
   })
   // renderCount++
-  console.log('에러: ', errors)
+  // console.log('에러: ', errors)
+  const { id, password, passwordCheck } = watch()
 
-  const onSubmit = (data) => {
-    console.log('submit')
+  const onSubmit = useCallback( (data) => {
     console.log(data)
+    // dispatch(userActions.loginAction(data))
     reset();
-  }
-
-  const marginBottom = useMemo(() => ({ display: 'block', marginBottom: '10px', fontWeight: '600', fontSize: '18px' }), [])
+  }, [id, password, passwordCheck])
 
   return (
     <>
@@ -30,9 +47,9 @@ const signup = () => {
           <title>회원가입 | Buzzy</title>
         </Head>
         {/*<div>{renderCount}</div>*/}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="field" style={{marginBottom: '30px'}}>
-            <label htmlFor="id" style={marginBottom}>아이디</label>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <div className="field">
+            <label htmlFor="id">아이디</label>
             <input
               {...register('id', {
                 required: '아이디를 입력해주세요',
@@ -53,7 +70,7 @@ const signup = () => {
             </p>
           </div>
           <div className="field">
-            <label htmlFor="password" style={marginBottom}>비밀번호</label>
+            <label htmlFor="password">비밀번호</label>
             <input
               {...register('password', {
                 required: '비밀번호를 입력해주세요',
@@ -69,7 +86,7 @@ const signup = () => {
               {errors.password && <span>* {errors.password.message}</span>}
             </p>
           </div>
-          <div className="field" style={{marginBottom: '30px'}}>
+          <div className="field">
             <input
               {...register('passwordCheck', {
                 required: "비밀번호를 확인해주세요",
@@ -87,7 +104,7 @@ const signup = () => {
               {errors.passwordCheck && <span>* {errors.passwordCheck.message}</span>}
             </p>
           </div>
-          <div className="field" style={{marginBottom: '30px'}}>
+          <div className="field">
             <input
               {...register('term', {
                 required: "약관에 동의해주세요",
@@ -100,7 +117,7 @@ const signup = () => {
             </p>
           </div>
           <button type="submit">회원가입</button>
-        </form>
+        </Form>
       </AppLayout>
     </>
   );

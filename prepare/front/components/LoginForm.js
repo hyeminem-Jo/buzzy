@@ -1,17 +1,16 @@
-import React from 'react';
+import styled from "styled-components";
 import { useForm } from 'react-hook-form'
-import PropTypes from 'prop-types'
-import {createGlobalStyle} from "styled-components";
+import { useDispatch } from "react-redux";
+import {useCallback} from "react";
+import * as userActions from "../store/modules/user"
 
-const Form = createGlobalStyle`
-  form {
-    padding: 20px;
-  }
+const Form = styled.form`
+  //padding: 20px;
+  
   .field {
     margin-bottom: 10px;
     
-    input[type="text"],
-    input[type="password"] {
+    input{
       width: 90%;
       margin-bottom: 3px;
     }
@@ -20,27 +19,42 @@ const Form = createGlobalStyle`
       color: crimson;
     }
   }
+
+  button:nth-of-type(1){
+    display: inline-block;
+    margin-right: 10px;
+  }
 `
 
-const LoginForm = ({ setIsLoggedIn }) => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm()
-  // register(): html의 input 태그를 결과 데이터의 속성중 하나로 등록하고, 검증할 때 사용되는 함수
-  // handleSubmit(): form이 submit 되었을 때를 다루는 함수
-  const onSubmit = (data) => { // 제출버튼을 눌렀을 때 실행
-    console.log(data) // {id: 'id', password: 'password'} 의 형태로 찍힘
-    reset(); // 제출된 값이 유효한 경우 모든 input 내의 값을 초기화시킴
-    // setIsLoggedIn(true)
-  }
+const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm({
+    defaultValues: {
+      id: '',
+      password: '',
+    }
+  })
+
+  const { id, password } = watch()
   // console.log(watch()) // input 창 입력시마다 다음과 같이 찍힘
   // {id: '', password: ''}
   // {id: 'i', password: ''}
   // {id: 'id', password: ''}
   // console.log(watch('id')) // id 속성의 값의 변화만 출력됨
 
+  // register(): html 의 input 태그를 결과 데이터의 속성중 하나로 등록하고, 검증할 때 사용되는 함수
+  // handleSubmit(): form 이 submit 되었을 때를 다루는 함수
+  const onSubmit = useCallback( (data) => { // 제출버튼을 눌렀을 때 실행
+    console.log(data) // {id: 'jinny', password: '1234'} 의 형태로 찍힘
+    dispatch(userActions.loginAction(data))
+    reset(); // 제출된 값이 유효한 경우 모든 input 내의 값을 초기화시킴
+  }, [id, password])
+
   return (
     <>
-      <Form />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      {/*<Form />*/}
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="field">
           <input
             {...register('id', { required: true,
@@ -66,27 +80,10 @@ const LoginForm = ({ setIsLoggedIn }) => {
           </p>
         </div>
         <button type="submit">로그인</button>
-      </form>
+        <button type="button">회원가입</button>
+      </Form>
     </>
-    // <div>
-    //   <form action="">
-    //     <fieldset>
-    //       <div>
-    //         <label htmlFor="">아이디</label>
-    //         <input type="text"/>
-    //       </div>
-    //       <div>
-    //         <label htmlFor="">비밀번호</label>
-    //         <input type="password"/>
-    //       </div>
-    //     </fieldset>
-    //   </form>
-    // </div>
   );
 };
-
-LoginForm.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired
-}
 
 export default LoginForm;

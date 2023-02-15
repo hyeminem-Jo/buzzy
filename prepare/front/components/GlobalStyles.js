@@ -21,6 +21,22 @@ const GlobalStyles = createGlobalStyle`
     color: #fff;
   }
   
+  form {
+    padding: 20px;
+
+    .field {
+      margin-bottom: 10px;
+
+      input{
+        margin-bottom: 3px;
+      }
+
+      p {
+        color: crimson;
+      }
+    }
+  }
+  
   input[type="email"],
   input[type="text"],
   input[type="password"] {
