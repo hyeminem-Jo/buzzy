@@ -22,4 +22,4 @@ const userSlice = createSlice({
 })
 
 export const { loginAction, logoutAction } = userSlice.actions; // 액션 생성 함수
-export default userSlice.reducer; // 리듀성
+export default userSlice.reducer; // 리듀서

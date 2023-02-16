@@ -15,7 +15,7 @@ const Test = () => {
     <>
       <h1>test</h1>
       <span>{name}</span>
-      <button onClick={() => changeNickname()}>이름 변경</button>
+      <button className="btn-primary" onClick={() => changeNickname()}>이름 변경</button>
     </>
   );
 };

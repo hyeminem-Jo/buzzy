@@ -116,7 +116,7 @@ const signup = () => {
               {errors.term && <span>* {errors.term.message}</span>}
             </p>
           </div>
-          <button type="submit">회원가입</button>
+          <button className="btn-primary" type="submit">회원가입</button>
         </Form>
       </AppLayout>
     </>

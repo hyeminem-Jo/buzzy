@@ -90,7 +90,7 @@ const AppLayout = ({ children }) => {
           }
           <li className="input-wrap">
             <input type="text"/>
-            <button type="button">찾기</button>
+            <button className="btn-primary" type="button">찾기</button>
           </li>
         </ul>
       </GlobalMenu>

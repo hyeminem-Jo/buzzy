@@ -74,7 +74,7 @@ const FollowList = ({ header, data }) => {
           }
         </ul>
       </List>
-      <button type="button">더보기</button>
+      <button className="btn-primary" type="button">더보기</button>
     </>
   );
 };

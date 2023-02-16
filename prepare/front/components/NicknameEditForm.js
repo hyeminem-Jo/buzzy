@@ -12,7 +12,7 @@ const NicknameEditForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} style={{ padding: "20px 0" }}>
         <label htmlFor="nickname" style={{ marginRight: '10px' }}>닉네임</label>
         <input {...register('nickname')} maxLength="15" type="text" />
-        <button type="submit">수정하기</button>
+        <button className="btn-primary" type="submit">수정하기</button>
       </form>
       
     </>

@@ -66,7 +66,7 @@ const UserProfile = () => {
           </div>
           <div className="wrap">
             <p className="name">조혜진</p>
-            <button onClick={logOut}>로그아웃</button>
+            <button className="btn-primary" onClick={logOut}>로그아웃</button>
           </div>
         </div>
         <div className="profile-amount">

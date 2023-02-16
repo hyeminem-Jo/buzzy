@@ -10,14 +10,28 @@ const GlobalStyles = createGlobalStyle`
   
   button {
     display: inline-block;
-    border: 1px solid #E6B905;
+    box-shadow:none;
+    border: none;
+    border-radius:0;
+    overflow:visible;
+    cursor:pointer;
+  }
+  
+  .btn-primary,
+  .btn-sub {
     height: 34px;
     padding: 0 10px;
-    box-shadow:none; 
-    border-radius:0; 
-    overflow:visible; 
-    cursor:pointer;
+  }
+  
+  .btn-primary {
+    border: 1px solid #E6B905;
     background-color: #E6B905;
+    color: #fff;
+  }
+
+  .btn-sub {
+    border: 1px solid #aaa;
+    background-color: #aaa;
     color: #fff;
   }
   

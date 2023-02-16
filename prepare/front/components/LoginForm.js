@@ -79,8 +79,8 @@ const LoginForm = () => {
             {errors.password && <span>* 비밀번호를 입력해주세요</span>}
           </p>
         </div>
-        <button type="submit">로그인</button>
-        <button type="button">회원가입</button>
+        <button className="btn-primary" type="submit">로그인</button>
+        <button className="btn-sub" type="button">회원가입</button>
       </Form>
     </>
   );
