@@ -105,11 +105,13 @@ const Post = styled.div`
 const PostCard = ({ post }) => {
   const dispatch = useDispatch()
   const me = useSelector(({user}) => user.me)
+  const id = me?.id
   const { register, watch, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
       comment: ''
     }
   })
+  const [isLiked, setLike] = useState()
 
   const [isOpened, setOpen] = useState(false)
 
@@ -151,9 +153,16 @@ const PostCard = ({ post }) => {
           <button type="button">
             <span>리윙윙</span>
           </button>
-          <button type="button">
-            <span>수정/신고</span>
-          </button>
+          {
+            id && id === post.User.id ? (
+              <button type="button">
+                <span>수정/삭제</span>
+              </button>
+            ) : <button type="button">
+              <span>신고</span>
+            </button>
+          }
+
         </div>
         {
           isOpened && (
@@ -187,7 +196,14 @@ const PostCard = ({ post }) => {
 };
 
 PostCard.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    User: PropTypes.object, // 이 object 도 shape 로 꼼꼼하게 검사할 수 있다.
+    content: PropTypes.string,
+    createdAt: PropTypes.object,
+    Comments: PropTypes.arrayOf(PropTypes.object), // 객체들의 배열
+    Images: PropTypes.arrayOf(PropTypes.object)
+  }).isRequired
 }
 
 export default PostCard;

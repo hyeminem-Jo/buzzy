@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import PropTypes from 'prop-types'
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as userActions from "../store/modules/user"
 
 const Profile = styled.div`
@@ -51,7 +51,8 @@ const Profile = styled.div`
 `
 
 const UserProfile = () => {
-  // const isLoggedIn = useSelector(({user}) => user.isLoggedIn)
+  const me = useSelector(({user}) => user.me)
+  const nickname = me?.nickname
   const dispatch = useDispatch();
   const logOut = useCallback(() => {
      dispatch(userActions.logoutAction()) // 로그아웃
@@ -65,7 +66,7 @@ const UserProfile = () => {
             <img src="" alt=""/>
           </div>
           <div className="wrap">
-            <p className="name">조혜진</p>
+            <p className="name">{nickname}</p>
             <button className="btn-primary" onClick={logOut}>로그아웃</button>
           </div>
         </div>

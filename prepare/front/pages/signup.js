@@ -25,20 +25,20 @@ const Form = styled.form`
 const signup = () => {
   const { register, watch, getValues, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
-      id: '',
+      email: '',
       password: '',
       passwordCheck: '',
     }
   })
   // renderCount++
   // console.log('에러: ', errors)
-  const { id, password, passwordCheck } = watch()
+  const { email, password, passwordCheck } = watch()
 
   const onSubmit = useCallback( (data) => {
     console.log(data)
     // dispatch(userActions.loginAction(data))
     reset();
-  }, [id, password, passwordCheck])
+  }, [email, password, passwordCheck])
 
   return (
     <>
@@ -51,7 +51,7 @@ const signup = () => {
           <div className="field">
             <label htmlFor="id">아이디</label>
             <input
-              {...register('id', {
+              {...register('email', {
                 required: '아이디를 입력해주세요',
                 minLength: {
                   value: 5,
@@ -66,7 +66,7 @@ const signup = () => {
               type="text"
               placeholder='아이디(5자 이상)' />
             <p>
-              {errors.id && <span>* {errors.id.message}</span>}
+              {errors.email && <span>* {errors.email.message}</span>}
             </p>
           </div>
           <div className="field">

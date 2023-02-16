@@ -7,12 +7,30 @@ const initialState = {
   loginData: {},
 }
 
+// 가짜 유저
+const dummyUser = (data) => ({
+  ...data, // { email, password } 삽입(concat)
+  nickname: "혜지닝",
+  id: 2,
+  Posts: [{ id: 1 }],
+  Followings: [
+    { nickname: "subin" },
+    { nickname: "hyejin" },
+    { nickname: "heeseung" },
+  ],
+  Followers: [
+    { nickname: "subin" },
+    { nickname: "hyejin" },
+    { nickname: "heeseung" },
+  ],
+});
+
 const userSlice = createSlice({
   name : 'user',
   initialState,
   reducers: {
     loginAction: (state, action) => {
-      state.me = action.payload;
+      state.me = dummyUser(action.payload);
     },
     logoutAction: (state, action) => {
       state.me = null;

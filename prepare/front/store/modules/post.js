@@ -8,9 +8,9 @@ const initialState = {
       // 유저 정보
       User: {
         id: 1,
-        nickname: "제로초",
+        nickname: "히승이",
       },
-      content: "첫 번째 게시글 #해시태그 #익스프레스",
+      content: "첫 번째 게시글 #오운완 #성수 데이트",
       // 이미지
       Images: [
         {
@@ -29,13 +29,13 @@ const initialState = {
           User: {
             nickname: "nero",
           },
-          content: "우와 개정판이 나왔군요~",
+          content: "오빠 잘생겼어요~",
         },
         {
           User: {
             nickname: "hero",
           },
-          content: "얼른 사고 싶어요",
+          content: "얼른 만나고 싶어요!",
         },
       ],
     },
@@ -51,7 +51,7 @@ const dummyPost = {
   id: 2,
   content: '더미데이터 입니다',
   User : {
-    id: 1,
+    id: 2,
     nickname: '혜지닝',
   },
   Images: [],

@@ -31,12 +31,12 @@ const LoginForm = () => {
 
   const { register, handleSubmit, reset, formState: { errors }, watch } = useForm({
     defaultValues: {
-      id: '',
+      email: '',
       password: '',
     }
   })
 
-  const { id, password } = watch()
+  const { email, password } = watch()
   // console.log(watch()) // input 창 입력시마다 다음과 같이 찍힘
   // {id: '', password: ''}
   // {id: 'i', password: ''}
@@ -49,7 +49,7 @@ const LoginForm = () => {
     console.log(data) // {id: 'jinny', password: '1234'} 의 형태로 찍힘
     dispatch(userActions.loginAction(data))
     reset(); // 제출된 값이 유효한 경우 모든 input 내의 값을 초기화시킴
-  }, [id, password])
+  }, [email, password])
 
   return (
     <>
@@ -57,7 +57,7 @@ const LoginForm = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <div className="field">
           <input
-            {...register('id', { required: true,
+            {...register('email', { required: true,
               validate: {
                 noAdmin: (value) => !value.includes("admin") || "admin 이라는 아이디는 사용할 수 없습니다.",
               },
@@ -66,7 +66,7 @@ const LoginForm = () => {
             type="text"
             placeholder='아이디' />
           <p>
-            {errors.id && <span>* 아이디를 입력해주세요</span>}
+            {errors.email && <span>* 아이디를 입력해주세요</span>}
           </p>
         </div>
         <div className="field">
