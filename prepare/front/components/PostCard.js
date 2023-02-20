@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import {useCallback, useState} from "react";
 // import * as postActions from "../store/modules/post";
 import {useDispatch, useSelector} from "react-redux";
+import PostImages from "./PostImages";
 
 const Post = styled.div`
   border: 1px solid #aaa;
@@ -139,6 +140,8 @@ const PostCard = ({ post }) => {
           <strong>{post.User.nickname}</strong>
         </div>
         <div className="contents">
+          {/* 이미지가 하나라도 있다면 이미지 게시 */}
+          {post.Images[0] && <PostImages images={post.Images} />}
           <p>{post.content}</p>
         </div>
       </div>
