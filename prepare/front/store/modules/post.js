@@ -65,6 +65,9 @@ const postSlice = createSlice({
     addPost: (state, action) => {
       state.mainPosts = state.mainPosts.concat(dummyPost);
       state.postAdded = true;
+    },
+    removeImages: (state) => {
+
     }
   }
 })

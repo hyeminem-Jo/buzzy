@@ -24,11 +24,12 @@ const Form = styled.form`
 // let renderCount = 0
 const signup = () => {
   const { register, watch, getValues, handleSubmit, reset, formState: { errors } } = useForm({
+    mode: "onChange",
     defaultValues: {
       email: '',
       password: '',
       passwordCheck: '',
-    }
+    },
   })
   // renderCount++
   // console.log('에러: ', errors)

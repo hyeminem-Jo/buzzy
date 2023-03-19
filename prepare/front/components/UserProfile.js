@@ -51,8 +51,7 @@ const Profile = styled.div`
 `
 
 const UserProfile = () => {
-  const me = useSelector(({user}) => user.me)
-  const nickname = me?.nickname
+  const nickname = useSelector(({user}) => user.me?.nickname)
   const dispatch = useDispatch();
   const logOut = useCallback(() => {
      dispatch(userActions.logoutAction()) // 로그아웃

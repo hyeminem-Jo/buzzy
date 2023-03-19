@@ -112,7 +112,6 @@ const PostCard = ({ post }) => {
     }
   })
   const [isLiked, setLike] = useState()
-
   const [isOpened, setOpen] = useState(false)
 
   const openComment = useCallback(() => {
@@ -168,10 +167,10 @@ const PostCard = ({ post }) => {
           isOpened && (
             <div className="comment">
               <form onSubmit={handleSubmit(onSubmit)}>
-            <textarea {...register('comment', { required: true })}
-                      maxLength="150"
-                      placeholder="댓글을 작성해주세요">
-            </textarea>
+                <textarea {...register('comment', { required: true })}
+                          maxLength="150"
+                          placeholder="댓글을 작성해주세요">
+                </textarea>
                 <button className="btn-primary" type="submit">윙윙</button>
               </form>
               <div className="header">

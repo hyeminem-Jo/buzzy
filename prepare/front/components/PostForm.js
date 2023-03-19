@@ -81,9 +81,9 @@ const PostForm = () => {
   const { text } = watch()
 
   const onSubmit = useCallback((data) => {
-    console.log(data)
+    console.log(data);
     dispatch(postActions.addPost());
-    reset()
+    reset();
   }, [text])
 
   return (
