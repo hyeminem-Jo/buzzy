@@ -63,7 +63,7 @@ const signup = () => {
                 },
               })}
               id="id"
-              maxLength="15"
+              maxLength="30"
               type="text"
               placeholder='아이디(5자 이상)' />
             <p>
