@@ -68,6 +68,7 @@ const signup = () => {
               placeholder='아이디(5자 이상)' />
             <p>
               {errors.email && <span>* {errors.email.message}</span>}
+            {/* * {errors.email?.message} */}
             </p>
           </div>
           <div className="field">
@@ -85,6 +86,7 @@ const signup = () => {
               placeholder='비밀번호(영문, 숫자, 특수문자 포함 8자 ~ 20자)'/>
             <p>
               {errors.password && <span>* {errors.password.message}</span>}
+              {/* * {errors.password?.message} */}
             </p>
           </div>
           <div className="field">
@@ -103,6 +105,7 @@ const signup = () => {
               placeholder='비밀번호 확인' />
             <p>
               {errors.passwordCheck && <span>* {errors.passwordCheck.message}</span>}
+              {/* * {errors.passwordCheck?.message} */}
             </p>
           </div>
           <div className="field">
@@ -115,6 +118,7 @@ const signup = () => {
             <label htmlFor="term">조혜진에게 복종할 것에 동의합니다</label>
             <p>
               {errors.term && <span>* {errors.term.message}</span>}
+              {/* * {errors.term?.message} */}
             </p>
           </div>
           <button className="btn-primary" type="submit">회원가입</button>

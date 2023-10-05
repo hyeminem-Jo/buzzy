@@ -7,7 +7,7 @@ import logger from "redux-logger";
 
 import reducer from "./modules";
 
-const makeStore = (context) => configureStore({
+const makeStore = () => configureStore({
   // configureStore: store 를 생성
   reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),

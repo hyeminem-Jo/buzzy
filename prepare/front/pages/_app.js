@@ -4,16 +4,18 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 
 import wrapper from "../store";
+import {Provider} from "react-redux";
 
-const Buzzy = ({ Component, pageProps }) => {
+const Buzzy = ({ Component, ...rest }) => {
+  const {store, props} = wrapper.useWrappedStore(rest)
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <meta charSet="utf-8" />
         <title>Buzzy</title>
       </Head>
-      <Component {...pageProps} />
-    </>
+      <Component {...props.pageProps} />
+    </Provider>
   );
 };
 
