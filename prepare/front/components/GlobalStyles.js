@@ -17,24 +17,6 @@ const GlobalStyles = createGlobalStyle`
     cursor:pointer;
   }
   
-  .btn-primary,
-  .btn-sub {
-    height: 34px;
-    padding: 0 10px;
-  }
-  
-  .btn-primary {
-    border: 1px solid #E6B905;
-    background-color: #E6B905;
-    color: #fff;
-  }
-
-  .btn-sub {
-    border: 1px solid #aaa;
-    background-color: #aaa;
-    color: #fff;
-  }
-  
   form {
     padding: 20px;
 

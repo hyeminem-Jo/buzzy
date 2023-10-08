@@ -3,33 +3,14 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from "react-redux";
 import {useCallback} from "react";
 import * as userActions from "../store/modules/user"
-
-const Form = styled.form`
-  //padding: 20px;
-  
-  .field {
-    margin-bottom: 10px;
-    
-    input{
-      width: 90%;
-      margin-bottom: 3px;
-    }
-    
-    p {
-      color: crimson;
-    }
-  }
-
-  button:nth-of-type(1){
-    display: inline-block;
-    margin-right: 10px;
-  }
-`
+import Input from "./common/Input";
+import Button from "./common/Button";
+import LinkButton from "./common/LinkButton";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, reset, formState: { errors }, watch } = useForm({
+  const { control, handleSubmit, reset, formState: { errors }, watch } = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -54,34 +35,46 @@ const LoginForm = () => {
   return (
     <>
       {/*<Form />*/}
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <div className="field">
-          <input
-            {...register('email', { required: true,
-              validate: {
-                noAdmin: (value) => !value.includes("admin") || "admin 이라는 아이디는 사용할 수 없습니다.",
-              },
-            })}
-            maxLength="15"
-            type="text"
-            placeholder='아이디' />
-          <p>
-            {errors.email && <span>* 아이디를 입력해주세요</span>}
-          </p>
-        </div>
-        <div className="field">
-          <input
-            {...register('password', { required: true })}
-            type="password"
-            maxLength="15"
-            placeholder='비밀번호'/>
-          <p>
-            {errors.password && <span>* 비밀번호를 입력해주세요</span>}
-          </p>
-        </div>
-        <button className="btn-primary" type="submit">로그인</button>
-        <button className="btn-sub" type="button">회원가입</button>
-      </Form>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          name="email"
+          control={control}
+          label="아이디"
+          maxLength="30"
+          type="text"
+          placeholder='아이디'
+          rules={{
+            required: '아이디를 입력해주세요'
+          }}
+        />
+        <Input
+          name="password"
+          control={control}
+          label="비밀번호"
+          maxLength="15"
+          type="password"
+          placeholder='비밀번호'
+          rules={
+            {
+              required: '비밀번호를 입력해주세요'
+            }
+          }
+        />
+        <Button
+          type="submit"
+          size={`md`}
+          color={`primary`}
+        >
+          로그인
+        </Button>
+        <LinkButton
+          href={`/`}
+          size={`md`}
+          color={`secondary`}
+        >
+          회원가입
+        </LinkButton>
+      </form>
     </>
   );
 };
