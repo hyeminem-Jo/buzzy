@@ -7,6 +7,20 @@ import Input from "./common/Input";
 import Button from "./common/Button";
 import LinkButton from "./common/LinkButton";
 
+const BtnWrap = styled.div`
+  display: flex;
+  
+  a {
+    flex: 1;
+  }
+  button {
+    margin-right: 10px;
+  }
+  input {
+    
+  }
+`
+
 const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -39,7 +53,7 @@ const LoginForm = () => {
         <Input
           name="email"
           control={control}
-          label="아이디"
+          label=""
           maxLength="30"
           type="text"
           placeholder='아이디'
@@ -50,7 +64,7 @@ const LoginForm = () => {
         <Input
           name="password"
           control={control}
-          label="비밀번호"
+          label=""
           maxLength="15"
           type="password"
           placeholder='비밀번호'
@@ -60,20 +74,22 @@ const LoginForm = () => {
             }
           }
         />
-        <Button
-          type="submit"
-          size={`md`}
-          color={`primary`}
-        >
-          로그인
-        </Button>
-        <LinkButton
-          href={`/`}
-          size={`md`}
-          color={`secondary`}
-        >
-          회원가입
-        </LinkButton>
+        <BtnWrap>
+          <Button
+            type="submit"
+            size={`md`}
+            color={`primary`}
+          >
+            로그인
+          </Button>
+          <LinkButton
+            href={`/`}
+            size={`md`}
+            color={`white`}
+          >
+            회원가입
+          </LinkButton>
+        </BtnWrap>
       </form>
     </>
   );

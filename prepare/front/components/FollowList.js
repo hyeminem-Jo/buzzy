@@ -1,25 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import styled from "styled-components";
+import Button from "./common/Button";
 
 const List = styled.div`
-  margin: 20px 0;
+  margin: 40px 0 0;
   background-color: #fff;
   
   .title {
     padding: 15px;
-    border-bottom: 2px solid #eee;
+    font-size: 20px;
+    font-weight: 700 ;
   }
   
   .list-data {
     display: flex;
     padding: 30px 15px;
+    background-color: #eee;
+    border-radius: 10px;
     
     li {
       position: relative;
       padding: 10px;
       border: 1px solid #ccc;
       cursor: default;
+      background-color: #fff;
+      border-radius: 5px;
       
       &:not(:last-child) {
         margin-right: 10px;
@@ -74,7 +80,13 @@ const FollowList = ({ header, data }) => {
           }
         </ul>
       </List>
-      <button className="btn-primary" type="button">더보기</button>
+      <Button
+        type="submit"
+        size={`sm`}
+        color={`secondary`}
+      >
+        더보기
+      </Button>
     </>
   );
 };

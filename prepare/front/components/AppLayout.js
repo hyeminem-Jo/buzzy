@@ -8,10 +8,13 @@ import {useMemo, useState} from "react";
 import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
 import {useSelector} from "react-redux";
+import Button from "./common/Button";
+import Input from "./common/Input";
+import {useForm} from "react-hook-form";
 
 const GlobalMenu = styled.div`
   height: 50px;
-  margin-bottom: 30px;
+  margin: 15px 0 20px;
   
   .nav {
     display: flex;
@@ -43,21 +46,24 @@ const GlobalMenu = styled.div`
   }
   
   .input-wrap {
-    display: inline-block;
+    display: inline-flex;
     height: 100%;
     padding: 0 20px;
     
     input {
+      width: 200px;
       height: 33px;
-      margin-top: 11px;
-      padding: 0;
-      padding-left: 10px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
+      padding: 0 0 0 10px;
+      margin-top: 10px;
       
       &:focus {
         border: 2px solid darkgoldenrod;
       }
+    }
+    
+    button {
+      margin-left: 5px;
+      margin-top: 10px;
     }
   }
 `
@@ -71,8 +77,20 @@ const AppLayout = ({ children }) => {
   ]
   const router = useRouter();
 
-  const leftStyle = useMemo(() => ({ border: '1px solid #ccc'}), [])
-  const middleStyle = useMemo(() => ({ backgroundColor: '#eee', padding: '30px' }), [])
+  const { control, handleSubmit, formState: { errors } } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      user: '',
+      password: '',
+      passwordCheck: '',
+      term: false,
+    },
+  })
+
+  const globalStyle = useMemo(() => ({ height: 'calc(100vh - 85px)'}), [])
+  const leftStyle = useMemo(() => ({ backgroundColor: '#eee'}), [])
+  const middleStyle = useMemo(() => ({ padding: '0 15px' }), [])
+  const rightStyle = useMemo(() => ({ minHeight: '150px' }), [])
 
   return (
     <>
@@ -89,12 +107,28 @@ const AppLayout = ({ children }) => {
             ))
           }
           <li className="input-wrap">
-            <input type="text"/>
-            <button className="btn-primary" type="button">찾기</button>
+            <Input
+              name="findHashTag"
+              control={control}
+              label=""
+              maxLength="30"
+              type="text"
+              placeholder='해시태그를 입력하세요'
+              // rules={{
+              //   required: '아이디를 입력해주세요'
+              // }}
+            />
+            <Button
+              type="submit"
+              size={`sm`}
+              color={`secondary`}
+            >
+              찾기
+            </Button>
           </li>
         </ul>
       </GlobalMenu>
-      <Row gutter={30}>
+      <Row gutter={30} style={globalStyle}>
         <Col xs={24} sm={6} style={leftStyle}>
           {/*왼쪽 메뉴*/}
           {me ? <UserProfile /> : <LoginForm />}
@@ -102,8 +136,8 @@ const AppLayout = ({ children }) => {
         <Col xs={24} sm={12} style={middleStyle}>
           {children}
         </Col>
-        <Col xs={24} sm={6}>
-          <a href="https://www.naver.com/" target="_blank" rel="noreferrer noopener">네이버</a>
+        <Col xs={24} sm={6} style={rightStyle}>
+          <Link href="https://velog.io/@h_jinny" target="_blank" rel="noreferrer noopener">블로그</Link>
           {/* 다른 페이지에서 접근하는 target _blank 는 보안상의 위험이 있기 때문에 rel="noreferrer" 를 적어주어야 한다. */}
         </Col>
       </Row>

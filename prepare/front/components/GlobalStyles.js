@@ -37,7 +37,8 @@ const GlobalStyles = createGlobalStyle`
   input[type="text"],
   input[type="password"] {
     outline: none;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     padding: 10px;
     -webkit-appearance: none;
     -moz-appearance: none;

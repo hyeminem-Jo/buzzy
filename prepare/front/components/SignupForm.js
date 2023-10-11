@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import {useCallback} from "react";
 import Input from "./common/Input";
+import Button from "./common/Button";
 
 
 // let renderCount = 0
@@ -85,7 +86,7 @@ const SignupForm = () => {
         <Input
           name="term"
           control={control}
-          label="아아아아외않되"
+          label="약관에 동의합니다"
           type="checkbox"
           rules={
             {
@@ -93,7 +94,13 @@ const SignupForm = () => {
             }
           }
         />
-          <button className="btn-primary" type="submit">회원가입</button>
+        <Button
+          type="submit"
+          size={`md`}
+          color={`secondary`}
+        >
+          회원가입
+        </Button>
         </form>
     </>
   );

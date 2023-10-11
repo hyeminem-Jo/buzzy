@@ -10,6 +10,7 @@ const ButtonWrap = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   padding: 0 15px;
   border-radius: 10px;
   cursor: pointer;

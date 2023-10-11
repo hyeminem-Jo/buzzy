@@ -6,9 +6,10 @@ const Field = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: ${props => props.isCheckbox ? 'row' : 'column'};
-
-  & + div {
-    margin-top: 30px;
+  margin-top: 30px;
+  
+  &:first-of-type {
+    margin-top: 0;
   }
   
   label {
@@ -91,8 +92,7 @@ const Input = ({
         placeholder={placeholder}
         {...rest}
       />
-      {error && <span className="error"><em>*</em>{error
-        .message}</span>}
+      {error && <span className="error"><em>*</em>{error.message}</span>}
     </Field>
   );
 };

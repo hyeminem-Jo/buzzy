@@ -4,16 +4,17 @@ import Link from "next/link";
 
 const btnColors = {
   primary: '#ffc451',
-  secondary: '#ebebeb'
+  secondary: '#ebebeb',
+  white: '#fff'
 }
 
 const LinkBtnWrap = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   border-radius: 10px;
   overflow: hidden;
-  //border: 1px solid red;
   
   a {
     //border: 1px solid gray;
@@ -25,13 +26,16 @@ const LinkBtnWrap = styled.div`
     font-weight: 600;
     
     &[class*='primary'] {
-      //color: #151515;
       color: #664d03;
       background-color: ${btnColors.primary};
     }
     &[class*='secondary'] {
       color: #664d03;
       background-color: ${btnColors.secondary};
+    }
+    &[class*='white'] {
+      color: #664d03;
+      background-color: ${btnColors.white};
     }
 
     &:hover {
