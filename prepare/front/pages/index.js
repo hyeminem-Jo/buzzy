@@ -13,7 +13,6 @@ const Home = () => {
 				<title>Buzzy</title>
 			</Head>
 			<AppLayout>
-				<div>홈 입니다</div>
 				{me && <PostForm />}
 				{mainPosts.map((post) => <PostCard key={post.id} post={post} />)}
 			</AppLayout>

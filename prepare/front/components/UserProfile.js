@@ -70,7 +70,7 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="profile-amount">
-          <div className="buzz">buzz<br />0</div>
+          <div className="buzz">게시글<br />0</div>
           <div className="followings">팔로잉<br />0</div>
           <div className="followers">팔로워<br />0</div>
         </div>

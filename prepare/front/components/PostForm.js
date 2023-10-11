@@ -1,9 +1,10 @@
 import {useForm} from "react-hook-form";
-import {useCallback, useRef} from "react";
+import React, {useCallback, useRef} from "react";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 
 import * as postActions from "../store/modules/post"
+import Button from "./common/Button";
 // import { addPost } from "../store/modules/post";
 
 const Form = styled.form`
@@ -103,8 +104,21 @@ const PostForm = () => {
         </ul>
         <input type="file" multiple hidden ref={imageInput} />
         <div className="btn">
-          <button className="btn-sub" type="button" onClick={onClickImageUpload}>이미지 업로드</button>
-          <button className="btn-primary" type="submit">윙윙</button>
+          <Button
+            type="submit"
+            onClick={onClickImageUpload}
+            size={`md`}
+            color={`secondary`}
+          >
+            이미지 업로드
+          </Button>
+          <Button
+            type="submit"
+            size={`md`}
+            color={`primary`}
+          >
+            윙윙
+          </Button>
         </div>
       </Form>
     </>

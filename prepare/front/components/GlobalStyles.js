@@ -43,6 +43,10 @@ const GlobalStyles = createGlobalStyle`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    
+    &:focus {
+      border: 1px solid #aaa;
+    }
   }
 
   body {

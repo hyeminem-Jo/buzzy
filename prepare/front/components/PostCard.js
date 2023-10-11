@@ -5,10 +5,15 @@ import {useCallback, useState} from "react";
 // import * as postActions from "../store/modules/post";
 import {useDispatch, useSelector} from "react-redux";
 import PostImages from "./PostImages";
+import {useRouter} from "next/router";
+
 
 const Post = styled.div`
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
+  
+  border-radius: 10px;
   background-color: #fff;
+  overflow: hidden;
   
   &:not(:last-child) {
     margin-bottom: 20px;
@@ -105,6 +110,7 @@ const Post = styled.div`
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const me = useSelector(({user}) => user.me)
   const id = me?.id
   const { register, watch, handleSubmit, reset, formState: { errors } } = useForm({
@@ -126,6 +132,7 @@ const PostCard = ({ post }) => {
       reset()
     } else {
       alert('로그인 후 이용하실 수 있습니다')
+      router.push('/signup')
     }
   }, [comment, me])
 

@@ -20,6 +20,11 @@ const BtnWrap = styled.div`
     
   }
 `
+const InputWrap = styled.div`
+  .input-form:nth-of-type(2) {
+    margin-top: 15px;
+  }
+`
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -50,30 +55,32 @@ const LoginForm = () => {
     <>
       {/*<Form />*/}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          name="email"
-          control={control}
-          label=""
-          maxLength="30"
-          type="text"
-          placeholder='아이디'
-          rules={{
-            required: '아이디를 입력해주세요'
-          }}
-        />
-        <Input
-          name="password"
-          control={control}
-          label=""
-          maxLength="15"
-          type="password"
-          placeholder='비밀번호'
-          rules={
-            {
-              required: '비밀번호를 입력해주세요'
+        <InputWrap>
+          <Input
+            name="email"
+            control={control}
+            label=""
+            maxLength="30"
+            type="text"
+            placeholder='아이디'
+            rules={{
+              required: '아이디를 입력해주세요'
+            }}
+          />
+          <Input
+            name="password"
+            control={control}
+            label=""
+            maxLength="15"
+            type="password"
+            placeholder='비밀번호'
+            rules={
+              {
+                required: '비밀번호를 입력해주세요'
+              }
             }
-          }
-        />
+          />
+        </InputWrap>
         <BtnWrap>
           <Button
             type="submit"
@@ -83,7 +90,7 @@ const LoginForm = () => {
             로그인
           </Button>
           <LinkButton
-            href={`/`}
+            href={`/signup`}
             size={`md`}
             color={`white`}
           >

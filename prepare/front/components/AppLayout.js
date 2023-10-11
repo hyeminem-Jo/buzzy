@@ -55,10 +55,6 @@ const GlobalMenu = styled.div`
       height: 33px;
       padding: 0 0 0 10px;
       margin-top: 10px;
-      
-      &:focus {
-        border: 2px solid darkgoldenrod;
-      }
     }
     
     button {
@@ -79,12 +75,6 @@ const AppLayout = ({ children }) => {
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     mode: "onChange",
-    defaultValues: {
-      user: '',
-      password: '',
-      passwordCheck: '',
-      term: false,
-    },
   })
 
   const globalStyle = useMemo(() => ({ height: 'calc(100vh - 85px)'}), [])
@@ -99,7 +89,7 @@ const AppLayout = ({ children }) => {
         <ul className="nav">
           {
             navLinks.map((link) => (
-              <li key={link.title}>
+              <li key={link.title} >
                 <Link href={link.path}
                   className={router.pathname === link.path ? "activeLink" : ""}>{link.title}
                 </Link>
@@ -114,9 +104,6 @@ const AppLayout = ({ children }) => {
               maxLength="30"
               type="text"
               placeholder='해시태그를 입력하세요'
-              // rules={{
-              //   required: '아이디를 입력해주세요'
-              // }}
             />
             <Button
               type="submit"

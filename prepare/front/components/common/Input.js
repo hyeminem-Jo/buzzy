@@ -69,6 +69,7 @@ const Input = ({
    maxLength = false ?? 0,
    placeholder = '',
    onChange = () => {},
+   disabled,
    ...rest
     }) => {
 
@@ -82,7 +83,7 @@ const Input = ({
   })
 
   return (
-    <Field className={`${type === 'checkbox' ? 'checkbox' : ''}`}>
+    <Field className={`${type === 'checkbox' ? 'checkbox' : ''} input-form`}>
       {label && (
         <label htmlFor={name}>
           {label}
@@ -95,6 +96,7 @@ const Input = ({
         value={field.value || ''}
         onChange={field.onChange}
         placeholder={placeholder}
+        disabled={disabled}
         {...rest}
       />
       {error && <span className="error"><em>*</em>{error.message}</span>}
