@@ -5,8 +5,20 @@ import styled from "styled-components";
 const Field = styled.div`
   display: flex;
   flex-wrap: wrap;
-  flex-direction: ${props => props.isCheckbox ? 'row' : 'column'};
   margin-top: 30px;
+  
+  &.checkbox {
+    flex-direction: row;
+    align-items: center;
+    .error {
+      display: inline-block;
+      margin-top: 0;
+      margin-left: 5px;
+    }
+    label {
+      margin-left: 2px;
+    }
+  }
   
   &:first-of-type {
     margin-top: 0;
@@ -37,7 +49,6 @@ const Field = styled.div`
   
   .error {
     display: block;
-    width: 100%;
     margin-top: 5px;
     order: 3;
     color: crimson;
@@ -49,15 +60,16 @@ const Field = styled.div`
 `
 
 const Input = ({
-     control,
-     name,
-     rules,
-     required = false,
-     type = 'text',
-     label = '',
-     maxLength = false ?? 0,
-     placeholder = '',
-     ...rest
+   control,
+   name,
+   rules,
+   required = false,
+   type = 'text',
+   label = '',
+   maxLength = false ?? 0,
+   placeholder = '',
+   onChange = () => {},
+   ...rest
     }) => {
 
   const {
@@ -69,15 +81,8 @@ const Input = ({
     rules,
   })
 
-  const [isCheckbox, setIsCheckbox] = useState(false);
-  useEffect(() => {
-    if (type === 'checkbox') {
-      setIsCheckbox(true)
-    }
-  }, [type])
-
   return (
-    <Field isCheckbox={isCheckbox}>
+    <Field className={`${type === 'checkbox' ? 'checkbox' : ''}`}>
       {label && (
         <label htmlFor={name}>
           {label}

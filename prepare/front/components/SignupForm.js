@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
-import {useCallback} from "react";
+import {useCallback, useEffect} from "react";
 import Input from "./common/Input";
 import Button from "./common/Button";
 
-
-// let renderCount = 0
 const SignupForm = () => {
-  const { watch, control, setValue, getValues, handleSubmit, reset, formState: { errors } } = useForm({
+  const { watch, control, setValue, getValues, handleSubmit, reset, setError, clearErrors, formState: { errors } } = useForm({
     mode: "onChange",
     defaultValues: {
       user: '',
@@ -15,8 +13,18 @@ const SignupForm = () => {
       term: false,
     },
   })
-  // renderCount++
-  // console.log('에러: ', errors)
+
+  // [비밀번호] value 수정 시 이미 입력된 [비밀번호 확인] value 도 같이 유효성 체크
+  useEffect(() => {
+    if (watch('password') !== watch('passwordCheck') && watch('passwordCheck')) {
+      setError('passwordCheck', {
+        type: 'password-mismatch',
+        message: '비밀번호가 일치하지 않습니다'
+      })
+    } else {
+      clearErrors('passwordCheck');
+    }
+  }, [watch('password'), watch('passwordCheck')])
 
   const onSubmit = useCallback( (data) => {
     console.log(data)
@@ -101,7 +109,7 @@ const SignupForm = () => {
         >
           회원가입
         </Button>
-        </form>
+      </form>
     </>
   );
 };

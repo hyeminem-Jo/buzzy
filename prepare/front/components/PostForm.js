@@ -82,7 +82,7 @@ const PostForm = () => {
 
   const onSubmit = useCallback((data) => {
     console.log(data);
-    dispatch(postActions.addPost());
+    dispatch(postActions.addPost(data));
     reset();
   }, [text])
 
