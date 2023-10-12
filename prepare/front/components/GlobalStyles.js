@@ -6,6 +6,9 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
     color: inherit;
+    &:hover {
+      color: #000;
+    }
   }
   
   button {

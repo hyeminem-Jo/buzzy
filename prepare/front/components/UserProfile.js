@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import * as userActions from "../store/modules/user"
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 const Profile = styled.div`
   padding: 20px;
@@ -36,9 +37,11 @@ const Profile = styled.div`
   .profile-amount {
     display: flex;
     height: 70px;
-    border: 1.5px solid #ccc;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
 
-    &>* {
+    span {
       flex: 1;
       text-align: center;
       padding-top: 20px;
@@ -73,11 +76,11 @@ const UserProfile = () => {
             <button className="btn-primary" onClick={logOut}>로그아웃</button>
           </div>
         </div>
-        <div className="profile-amount">
-          <div className="buzz">게시글<br />0</div>
-          <div className="followings">팔로잉<br />0</div>
-          <div className="followers">팔로워<br />0</div>
-        </div>
+        <Link href="/profile" className="profile-amount">
+          <span className="buzz">게시글<br />0</span>
+          <span className="followings">팔로잉<br />0</span>
+          <span className="followers">팔로워<br />0</span>
+        </Link>
       </Profile>
     </>
   );

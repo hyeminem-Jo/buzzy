@@ -36,7 +36,7 @@ const GlobalMenu = styled.div`
       box-sizing: border-box;
       border-bottom: 2px solid transparent;
       &:hover, &.activeLink {
-        color: darkgoldenrod;
+        color: darkgoldenrod ;
         border-bottom: 2px solid gold;
       }
     }
@@ -76,7 +76,7 @@ const AppLayout = ({ children }) => {
 
   const globalStyle = useMemo(() => ({ height: 'calc(100vh - 85px)'}), [])
   const leftStyle = useMemo(() => ({ backgroundColor: '#eee'}), [])
-  const middleStyle = useMemo(() => ({ padding: '0 15px' }), [])
+  const middleStyle = useMemo(() => ({ padding: '0 30px' }), [])
   const rightStyle = useMemo(() => ({ minHeight: '150px' }), [])
 
   return (

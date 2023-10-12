@@ -3,6 +3,20 @@ import {useController, useForm} from "react-hook-form";
 import Button from "./common/Button";
 import {useSelector} from "react-redux";
 import Input from "./common/Input";
+import styled from "styled-components";
+
+const Form = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  button {
+    margin-top: 0;
+    margin-left: 5px;
+  }
+  input {
+    padding: 7px;
+  }
+`
 
 const NicknameEditForm = () => {
   const nickname = useSelector(({user}) => user.me?.nickname)
@@ -23,7 +37,7 @@ const NicknameEditForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ padding: "20px 0" }}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="nickname" style={{ marginRight: '10px' }}>닉네임</label>
         <Input
           name="nickname"
@@ -39,7 +53,7 @@ const NicknameEditForm = () => {
         >
           수정하기
         </Button>
-      </form>
+      </Form>
       
     </>
   );
