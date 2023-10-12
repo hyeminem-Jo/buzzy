@@ -21,11 +21,8 @@ const GlobalMenu = styled.div`
     height: 100%;
     
     li {
-      &:not(:nth-child(4)) {
+      &:not(:nth-of-type(3)) {
         width: 100px;
-      }
-      &:nth-child(3) {
-        order: 3;
       }
     }
 
@@ -69,7 +66,7 @@ const AppLayout = ({ children }) => {
   const navLinks = [
     {title: 'Home', path: '/'},
     {title: 'Profile', path: '/profile'},
-    {title: 'Signup', path: '/signup'},
+    // {title: 'Signup', path: '/signup'},
   ]
   const router = useRouter();
 

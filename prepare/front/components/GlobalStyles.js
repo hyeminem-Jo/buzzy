@@ -35,7 +35,9 @@ const GlobalStyles = createGlobalStyle`
   
   input[type="email"],
   input[type="text"],
-  input[type="password"] {
+  input[type="password"],
+  textarea
+  {
     outline: none;
     border: 1px solid #ccc;
     border-radius: 10px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useController} from "react-hook-form";
 import styled from "styled-components";
-const Field = styled.form`
+const Field = styled.div`
   
 `
 
@@ -39,8 +39,8 @@ const Textarea = ({
       <textarea
         id={name}
         className={`text-area ${resize ? '' : 'no-resize'}`}
-        value={field.value || ''}
-        autoComplete="off"
+        value={field.value}
+        // autoComplete="off"
         maxLength={maxLength || 500}
         placeholder={placeholder}
         disabled={disabled}

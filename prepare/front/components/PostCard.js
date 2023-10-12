@@ -6,7 +6,8 @@ import {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import PostImages from "./PostImages";
 import {useRouter} from "next/router";
-
+import Button from "./common/Button";
+import Textarea from "./common/Textarea";
 
 const Post = styled.div`
   border: 1px solid #ccc;
@@ -81,13 +82,11 @@ const Post = styled.div`
       
       form {
         padding: 0;
-        margin: 20px 0;
-        display: flex;
-        justify-content: space-between;
+        margin-bottom: 20px;
         
         textarea {
           display: block;
-          width: 82%;
+          width: 92%;
           height: 50px;
           padding: 15px;
           margin-bottom: 10px;
@@ -107,13 +106,24 @@ const Post = styled.div`
     }
   }
 `
+const BtnWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  
+  button {
+    margin-top: 0;
+    &:nth-of-type(2) {
+      margin-left: 5px;
+    }
+  }
+`
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch()
   const router = useRouter()
   const me = useSelector(({user}) => user.me)
   const id = me?.id
-  const { register, watch, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, watch, control, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
       comment: ''
     }
@@ -132,7 +142,7 @@ const PostCard = ({ post }) => {
       reset()
     } else {
       alert('로그인 후 이용하실 수 있습니다')
-      router.push('/signup')
+      return
     }
   }, [comment, me])
 
@@ -177,11 +187,29 @@ const PostCard = ({ post }) => {
           isOpened && (
             <div className="comment">
               <form onSubmit={handleSubmit(onSubmit)}>
-                <textarea {...register('comment', { required: true })}
-                          maxLength="150"
-                          placeholder="댓글을 작성해주세요">
-                </textarea>
-                <button className="btn-primary" type="submit">윙윙</button>
+                <Textarea
+                  id="comment"
+                  control={control}
+                  maxLength="150"
+                  placeholder="댓글을 작성해주세요"
+                  row="5"
+                />
+                <BtnWrap>
+                  <Button
+                    type="submit"
+                    size={`sm`}
+                    color={`secondary`}
+                  >
+                    취소
+                  </Button>
+                  <Button
+                    type="submit"
+                    size={`sm`}
+                    color={`primary`}
+                  >
+                    댓글
+                  </Button>
+                </BtnWrap>
               </form>
               <div className="header">
                 {post.Comments.length} 개의 댓글

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import * as userActions from "../store/modules/user"
+import {useRouter} from "next/router";
 
 const Profile = styled.div`
   padding: 20px;
@@ -53,8 +54,11 @@ const Profile = styled.div`
 const UserProfile = () => {
   const nickname = useSelector(({user}) => user.me?.nickname)
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const logOut = useCallback(() => {
      dispatch(userActions.logoutAction()) // 로그아웃
+     router.push('/')
   }, [])
 
   return (

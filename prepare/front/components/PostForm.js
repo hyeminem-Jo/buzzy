@@ -5,16 +5,19 @@ import {useDispatch, useSelector} from "react-redux";
 
 import * as postActions from "../store/modules/post"
 import Button from "./common/Button";
+import Textarea from "./common/Textarea";
 // import { addPost } from "../store/modules/post";
 
 const Form = styled.form`
-  padding: 0;
+  padding: 10px;
   margin-top: 20px;
   margin-bottom: 40px;
-
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  
   textarea {
     display: block;
-    width: 95%;
+    width: 93%;
     height: 100px;
     padding: 15px;
     margin-bottom: 10px;
@@ -31,6 +34,10 @@ const Form = styled.form`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    
+    button {
+      margin-top: 0;
+    }
   }
   
   .images {
@@ -68,7 +75,7 @@ const Form = styled.form`
 const PostForm = () => {
   const dispatch = useDispatch();
   const imagePaths = useSelector(({post}) => post.imagePaths)
-  const { register, watch, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, control, watch, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValues: {
       text: ''
     }
@@ -90,18 +97,23 @@ const PostForm = () => {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <textarea {...register('text', { required: true })}
+        <Textarea
+          id="post"
+          control={control}
           maxLength="150"
-          placeholder="글을 작성해주세요">
-        </textarea>
-        <ul className="images">
-          {imagePaths.map((el) => (
-            <li key={el}>
-              <img src={el} alt=""/>
-              <button type="button">x</button>
-            </li>
-          ))}
-        </ul>
+          placeholder="글을 작성해주세요"
+          row="5"
+        />
+        {imagePaths &&
+          <ul className="images">
+            {imagePaths.map((el) => (
+              <li key={el}>
+                <img src={el} alt=""/>
+                <button type="button">x</button>
+              </li>
+            ))}
+          </ul>
+        }
         <input type="file" multiple hidden ref={imageInput} />
         <div className="btn">
           <Button
