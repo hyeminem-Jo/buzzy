@@ -1,6 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import ImagesZoom from "./ImagesZoom";
 
 const Images = styled.div`
   margin-bottom: 20px;
@@ -63,25 +64,23 @@ const Images = styled.div`
 `
 
 const PostImages = ({ images }) => {
-  const [zoomOn, setZoomOn] = useState(false)
+  const [onZoom, setOnZoom] = useState(false)
 
   const zoom = useCallback(() => {
-    setZoomOn(true)
+    setOnZoom(true)
   }, [])
 
-  if (images.length === 1) {
-    return (
-      <Images>
+  const onClose = useCallback(()=> {
+    setOnZoom(false)
+  }, [])
+
+  return (
+    <Images>
+      {images.length === 1 ? (
         <div className="image one">
           <img src={images[0].src} alt={images[0].src} onClick={zoom} />
         </div>
-      </Images>
-    );
-  }
-
-  if (images.length === 2) {
-    return (
-      <Images>
+      ) : images.length === 2 ? (
         <div className="two" onClick={zoom} >
           <div className="image">
             <img src={images[0].src} alt={images[0].src} />
@@ -90,28 +89,25 @@ const PostImages = ({ images }) => {
             <img src={images[1].src} alt={images[1].src} />
           </div>
         </div>
-      </Images>
-    );
-  }
-
-  return (
-    <Images>
-      <div className="else" onClick={zoom} >
-        <div className="image left">
-          <img src={images[0].src} alt={images[0].src}/>
-        </div>
-        <div className="right">
-          <div className="image">
-            <img src={images[1].src} alt={images[1].src} />
+      ) : (
+        <div className="else" onClick={zoom} >
+          <div className="image left">
+            <img src={images[0].src} alt={images[0].src}/>
           </div>
-          <div className="image more">
-            <img src={images[2].src} alt={images[2].src} />
-            <button className="btn-more">
-              + {images.length - 2}개의 사진 더보기
-            </button>
+          <div className="right">
+            <div className="image">
+              <img src={images[1].src} alt={images[1].src} />
+            </div>
+            <div className="image more">
+              <img src={images[2].src} alt={images[2].src} />
+              <button className="btn-more">
+                + {images.length - 2}개의 사진 더보기
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      {onZoom && <ImagesZoom images={images} onClose={onClose} />}
     </Images>
   );
 };
